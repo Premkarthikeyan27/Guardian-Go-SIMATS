@@ -1,0 +1,19 @@
+/* Admin Dashboard Custom CSS Styles */
+.chart-bar {
+  flex: 1;
+  background: linear-gradient(180deg, var(--primary-green) 0%, #1B2E24 100%);
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  transition: height 0.3s;
+}
+
+.chart-bar span {
+  position: absolute;
+  bottom: -22px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}

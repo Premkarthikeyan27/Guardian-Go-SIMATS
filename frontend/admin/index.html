@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guardian Go | Admin Command Center</title>
+  <link rel="stylesheet" href="/static/styles.css?v=2.1.0">
+  <link rel="stylesheet" href="/admin/styles.css?v=2.1.0">
+</head>
+<body>
+
+  <div class="app-layout">
+    
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar">
+      <div>
+        <div class="sidebar-header">
+          <a href="/" class="sidebar-brand">
+            <div class="brand-icon-shield" style="background: linear-gradient(135deg, #0f172a 0%, #334155 100%);">⚙️</div>
+            <div class="brand-text-wrapper">
+              <span class="brand-title">Guardian Go</span>
+              <span class="brand-subtitle">COMMAND CENTER</span>
+            </div>
+          </a>
+
+          <!-- Workspace Selector Dropdown Box -->
+          <div class="workspace-selector">
+            <div class="workspace-info">
+              <div class="avatar-initials" style="background: #334155;">AD</div>
+              <div>
+                <div class="workspace-title">Admin Operations</div>
+                <div class="workspace-sub">Super Admin</div>
+              </div>
+            </div>
+            <span style="font-size: 0.8rem; color: var(--sidebar-muted);">⇕</span>
+          </div>
+        </div>
+
+        <div class="nav-section-label">ADMINISTRATION</div>
+        <nav class="sidebar-nav-section">
+          <a href="#overview" class="nav-item active">
+            <div class="nav-item-left">
+              <span class="nav-icon">📊</span>
+              <span class="nav-text">Command Centre</span>
+            </div>
+          </a>
+          <a href="#verification" class="nav-item">
+            <div class="nav-item-left">
+              <span class="nav-icon">🔒</span>
+              <span class="nav-text">Guardian Verification</span>
+            </div>
+            <span class="nav-badge" id="admVerifBadge">18</span>
+          </a>
+          <a href="#digilocker" class="nav-item">
+            <div class="nav-item-left">
+              <span class="nav-icon">📜</span>
+              <span class="nav-text">DigiLocker Check</span>
+            </div>
+          </a>
+          <a href="#memberships" class="nav-item">
+            <div class="nav-item-left">
+              <span class="nav-icon">💎</span>
+              <span class="nav-text">Memberships</span>
+            </div>
+          </a>
+          <a href="#sessions" class="nav-item">
+            <div class="nav-item-left">
+              <span class="nav-icon">⏱️</span>
+              <span class="nav-text">Bookings & Sessions</span>
+            </div>
+          </a>
+          <a href="#risk" class="nav-item">
+            <div class="nav-item-left">
+              <span class="nav-icon">⚠️</span>
+              <span class="nav-text">Risk & Fraud Alerts</span>
+            </div>
+          </a>
+          <a href="#complaints" class="nav-item">
+            <div class="nav-item-left">
+              <span class="nav-icon">📢</span>
+              <span class="nav-text">Complaints</span>
+            </div>
+          </a>
+          <a href="#safety" class="nav-item">
+            <div class="nav-item-left">
+              <span class="nav-icon">🚨</span>
+              <span class="nav-text">Active Emergencies</span>
+            </div>
+          </a>
+          <a href="#analytics" class="nav-item">
+            <div class="nav-item-left">
+              <span class="nav-icon">📈</span>
+              <span class="nav-text">Analytics</span>
+            </div>
+          </a>
+          <a href="#audit" class="nav-item">
+            <div class="nav-item-left">
+              <span class="nav-icon">📋</span>
+              <span class="nav-text">Audit Logs</span>
+            </div>
+          </a>
+        </nav>
+      </div>
+
+      <div>
+        <!-- Ask Care Guide Card -->
+        <div class="ask-care-card">
+          <div class="ask-care-header">
+            <span>✦</span> Admin AI Assistant
+          </div>
+          <div class="ask-care-text">
+            Monitor platform safety, system operations, and audit health.
+          </div>
+          <button class="btn-care-guide" onclick="openAdminAiDrawer()">
+            <span>Ask Admin AI</span>
+            <span>→</span>
+          </button>
+        </div>
+
+        <!-- Sidebar User Profile Footer -->
+        <div class="sidebar-user-footer">
+          <div class="user-profile-info">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80" class="user-avatar-img" alt="Admin">
+            <div>
+              <div class="user-name-text">System Admin</div>
+              <div class="user-role-text">Operations Lead</div>
+            </div>
+          </div>
+          <span class="icon-gear" title="Settings">⚙️</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT CANVAS -->
+    <main class="main-wrapper">
+      
+      <!-- TOP HEADER BAR -->
+      <header class="top-header">
+        <div>
+          <h1 class="header-greeting-title">Admin Command Center ⚙️</h1>
+          <div class="header-subtitle-row">
+            <span class="header-subtitle-text">Monitor trust, safety, and platform operations.</span>
+            <span class="badge-safety-normal">
+              <span style="width: 6px; height: 6px; background: #059669; border-radius: 50%;"></span>
+              All Core Services Operational
+            </span>
+          </div>
+        </div>
+
+        <div class="top-header-actions">
+          <div class="search-input-box">
+            <span>🔍</span>
+            <input type="text" placeholder="Search guardians, logs...">
+          </div>
+          <div class="header-icon-btn" title="Notifications">
+            🔔
+            <span class="notification-dot"></span>
+          </div>
+        </div>
+      </header>
+
+      <!-- TOP KPI CARDS GRID -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.25rem; margin-bottom: 2.25rem;">
+        
+        <div class="card-white" style="padding: 1.25rem;">
+          <div style="font-size: 0.72rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase;">Total Guardians</div>
+          <div style="font-size: 1.6rem; font-weight: 800; margin-top: 0.2rem;" id="kpiTotalGuardians">286</div>
+          <div style="font-size: 0.75rem; color: var(--mint-text); font-weight: 700; margin-top: 0.2rem;">+14 this week</div>
+        </div>
+
+        <div class="card-white" style="padding: 1.25rem;">
+          <div style="font-size: 0.72rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase;">Verified Guardians</div>
+          <div style="font-size: 1.6rem; font-weight: 800; color: var(--primary-green); margin-top: 0.2rem;" id="kpiVerifiedGuardians">272</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">96.4% Pass Rate</div>
+        </div>
+
+        <div class="card-white" style="padding: 1.25rem;">
+          <div style="font-size: 0.72rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase;">Active Care Sessions</div>
+          <div style="font-size: 1.6rem; font-weight: 800; margin-top: 0.2rem;" id="kpiActiveSessions">74</div>
+          <div style="font-size: 0.75rem; color: var(--mint-text); font-weight: 700; margin-top: 0.2rem;">🟢 In Progress</div>
+        </div>
+
+        <div class="card-white" style="padding: 1.25rem;">
+          <div style="font-size: 0.72rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase;">Pending Verifications</div>
+          <div style="font-size: 1.6rem; font-weight: 800; color: var(--warning-orange); margin-top: 0.2rem;" id="kpiPendingVerif">18</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">Requires Review</div>
+        </div>
+
+        <div class="card-white" style="padding: 1.25rem;">
+          <div style="font-size: 0.72rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase;">Active SOS Alerts</div>
+          <div style="font-size: 1.6rem; font-weight: 800; color: var(--coral-danger); margin-top: 0.2rem;" id="kpiActiveSos">0</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">System Normal</div>
+        </div>
+
+        <div class="card-white" style="padding: 1.25rem;">
+          <div style="font-size: 0.72rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase;">BLE Devices Online</div>
+          <div style="font-size: 1.6rem; font-weight: 800; color: #059669; margin-top: 0.2rem;">142</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">Telemetry Active</div>
+        </div>
+
+      </div>
+
+      <!-- 1. GUARDIAN VERIFICATION PIPELINE -->
+      <section id="verification" style="margin-bottom: 2.5rem;">
+        <div class="section-header-row">
+          <div>
+            <div class="section-title-tag">4-GATE COMPLIANCE ENGINE</div>
+            <h2 class="section-main-heading">Guardian Verification Pipeline</h2>
+          </div>
+        </div>
+
+        <div class="card-white" style="padding: 0; overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
+            <thead>
+              <tr style="background: #f8fafc; border-bottom: 1px solid var(--card-border); color: var(--text-muted);">
+                <th style="padding: 1rem;">Guardian</th>
+                <th style="padding: 1rem;">Identity Check</th>
+                <th style="padding: 1rem;">Background Check</th>
+                <th style="padding: 1rem;">CPR / First Aid</th>
+                <th style="padding: 1rem;">Trust Score</th>
+                <th style="padding: 1rem;">Status</th>
+                <th style="padding: 1rem; text-align: right;">Admin Action</th>
+              </tr>
+            </thead>
+            <tbody id="adminGuardiansTable">
+              <!-- Rendered via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TWO COLUMN LAYOUT: SAFETY CENTER & SYSTEM HEALTH -->
+      <div class="dashboard-columns-grid" style="margin-bottom: 2.5rem;">
+        
+        <!-- LEFT COLUMN: LIVE SAFETY INCIDENTS -->
+        <div id="safety">
+          <div class="section-header-row">
+            <div>
+              <div class="section-title-tag">REAL-TIME INCIDENTS</div>
+              <h2 class="section-main-heading">Safety Monitoring Center</h2>
+            </div>
+          </div>
+
+          <div class="card-white" style="padding: 0; overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem;">
+              <thead>
+                <tr style="background: #f8fafc; border-bottom: 1px solid var(--card-border); color: var(--text-muted);">
+                  <th style="padding: 0.85rem 1rem;">Timestamp</th>
+                  <th style="padding: 0.85rem 1rem;">Event Type</th>
+                  <th style="padding: 0.85rem 1rem;">Severity</th>
+                  <th style="padding: 0.85rem 1rem;">Status</th>
+                  <th style="padding: 0.85rem 1rem; text-align: right;">Action</th>
+                </tr>
+              </thead>
+              <tbody id="adminSafetyTable">
+                <!-- Rendered via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- RIGHT SIDEBAR COLUMN: SYSTEM HEALTH -->
+        <div class="right-sidebar-column">
+          <div class="right-card">
+            <div class="right-card-header">
+              <h3 class="right-card-heading">System Health Status</h3>
+              <span class="badge badge-verified">100% ONLINE</span>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 0.85rem; font-size: 0.85rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 0.5rem;">
+                <span style="font-weight: 700;">FastAPI Backend</span>
+                <span class="badge badge-verified">ONLINE</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 0.5rem;">
+                <span style="font-weight: 700;">Ollama AI Service (qwen3:4b)</span>
+                <span class="badge badge-verified">READY</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 0.5rem;">
+                <span style="font-weight: 700;">SQLite Database</span>
+                <span class="badge badge-verified">CONNECTED</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: 700;">BLE Telemetry Daemon</span>
+                <span class="badge badge-verified">ACTIVE</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SYSTEM AUDIT TRAIL TABLE -->
+      <section id="audit" style="margin-bottom: 2.5rem;">
+        <div class="section-header-row">
+          <div>
+            <div class="section-title-tag">IMMUTABLE LOGS</div>
+            <h2 class="section-main-heading">System Audit Trail</h2>
+          </div>
+        </div>
+
+        <div class="card-white" style="padding: 0; overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.82rem;">
+            <thead>
+              <tr style="background: #f8fafc; border-bottom: 1px solid var(--card-border); color: var(--text-muted);">
+                <th style="padding: 0.75rem 1rem;">Timestamp</th>
+                <th style="padding: 0.75rem 1rem;">Actor</th>
+                <th style="padding: 0.75rem 1rem;">Action</th>
+                <th style="padding: 0.75rem 1rem;">Resource</th>
+                <th style="padding: 0.75rem 1rem;">Status</th>
+                <th style="padding: 0.75rem 1rem;">Details</th>
+              </tr>
+            </thead>
+            <tbody id="adminAuditTable">
+              <!-- Rendered via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div id="toast-container"></div>
+
+  <!-- ADMIN AI DRAWER MODAL -->
+  <div class="modal-overlay" id="adminAiDrawerModal">
+    <div class="modal-card" style="max-width: 600px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h3 style="font-size: 1.25rem; color: var(--primary-green); font-weight: 800;">🤖 Admin AI Operations Assistant</h3>
+        <button onclick="closeAdminAiDrawer()" style="background: none; border: none; font-size: 1.2rem; cursor: pointer;">✕</button>
+      </div>
+      <div id="adminAiChatWindow" style="background: var(--main-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 1rem; height: 260px; overflow-y: auto; margin-bottom: 1rem; font-size: 0.88rem;">
+        <div style="color: var(--text-muted); font-style: italic;">System Admin AI connected. Ask any query about verification rates, BLE fleet health, or platform security events.</div>
+      </div>
+      <form onsubmit="handleAdminAiSubmit(event)" style="display: flex; gap: 0.75rem;">
+        <input type="text" id="adminAiInput" placeholder="Ask Admin AI..." required style="flex: 1; padding: 0.75rem 1rem; border: 1px solid var(--card-border); border-radius: var(--radius-md); font-size: 0.88rem;">
+        <button type="submit" class="btn btn-purple" id="adminAiSubmitBtn">Ask AI</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="/admin/app.js?v=2.1.0"></script>
+</body>
+</html>

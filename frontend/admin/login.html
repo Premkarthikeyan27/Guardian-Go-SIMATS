@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Command Centre Login | Guardian Go</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <style>
+    body {
+      background: #101c15;
+      color: white;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-family);
+    }
+    .admin-auth-card {
+      width: 100%;
+      max-width: 440px;
+      background: #1b2e24;
+      border: 1px solid rgba(168, 213, 186, 0.2);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      padding: 2.5rem;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 800;
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+    }
+    .shield-icon {
+      width: 42px;
+      height: 42px;
+      background: #A8D5BA;
+      color: #1F2933;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #A3C2AF;
+      margin-bottom: 0.35rem;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      color: white;
+      font-family: inherit;
+      outline: none;
+    }
+    .form-group input:focus {
+      border-color: #A8D5BA;
+    }
+    .btn-submit {
+      width: 100%;
+      background: #A8D5BA;
+      color: #1F2933;
+      padding: 0.85rem;
+      border: none;
+      border-radius: var(--radius-md);
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-submit:hover {
+      background: #8ec3a2;
+    }
+    .alert-banner {
+      padding: 0.75rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      display: none;
+      background: rgba(217, 83, 79, 0.2);
+      color: #f87171;
+      border: 1px solid rgba(217, 83, 79, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="admin-auth-card">
+    <div class="brand-logo">
+      <div class="shield-icon">⚙️</div>
+      <div>Admin Command Centre</div>
+    </div>
+
+    <h2 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 0.35rem;">Secure Operations Login</h2>
+    <p style="color: #A3C2AF; font-size: 0.85rem; margin-bottom: 1.5rem;">Restricted to provisioned platform administrators.</p>
+
+    <div id="alertBox" class="alert-banner"></div>
+
+    <form onsubmit="handleAdminLogin(event)">
+      <div class="form-group">
+        <label>Admin Email</label>
+        <input type="email" id="email" value="admin@demo.com" required>
+      </div>
+
+      <div class="form-group">
+        <label>Secure Key / Password</label>
+        <input type="password" id="password" value="password123" required>
+      </div>
+
+      <button type="submit" class="btn-submit">Authenticate to Command Centre</button>
+    </form>
+  </div>
+
+  <script>
+    async function handleAdminLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const alertBox = document.getElementById('alertBox');
+      alertBox.style.display = 'none';
+
+      try {
+        const res = await fetch('/api/v1/auth/admin/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          alertBox.innerText = data.detail || 'Admin authentication failed';
+          alertBox.style.display = 'block';
+          return;
+        }
+        localStorage.setItem('gg_token', data.access_token);
+        localStorage.setItem('gg_user', JSON.stringify(data.user));
+        window.location.href = '/portals/admin/';
+      } catch (err) {
+        alertBox.innerText = 'Network error during login';
+        alertBox.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>

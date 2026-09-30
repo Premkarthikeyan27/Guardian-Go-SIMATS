@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guardian Go | Caregiver Dashboard</title>
+  <link rel="stylesheet" href="/static/styles.css?v=2.1.0">
+  <link rel="stylesheet" href="/guardian/styles.css?v=2.1.0">
+</head>
+<body>
+
+  <div class="app-layout">
+    
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar">
+      <div>
+        <div class="sidebar-header">
+          <a href="/" class="sidebar-brand">
+            <div class="brand-icon-shield">🛡️</div>
+            <div class="brand-text-wrapper">
+              <span class="brand-title">Guardian Go</span>
+              <span class="brand-subtitle">GUARDIAN PORTAL</span>
+            </div>
+          </a>
+
+          <!-- Workspace Selector Dropdown Box -->
+          <div class="workspace-selector">
+            <div class="workspace-info">
+              <div class="avatar-initials" style="background: var(--primary-green);">AS</div>
+              <div>
+                <div class="workspace-title">Ananya Sharma</div>
+                <div class="workspace-sub">Certified Caregiver</div>
+              </div>
+            </div>
+            <span style="font-size: 0.8rem; color: var(--sidebar-muted);">⇕</span>
+          </div>
+        </div>
+
+        <div class="nav-section-label">CAREGIVER MENU</div>
+        <nav class="sidebar-nav-section">
+          <a href="#overview" class="nav-item active">
+            <div class="nav-item-left">
+              <span class="nav-icon">📊</span>
+              <span class="nav-text">Dashboard</span>
+            </div>
+          </a>
+          <a href="#verification" class="nav-item">
+            <div class="nav-item-left">
+              <span class="nav-icon">🔒</span>
+              <span class="nav-text">Verification</span>
+            </div>
+          </a>
+          <a href="#digilocker" class="nav-item">
+            <div class="nav-item-left">
+              <span class="nav-icon">📜</span>
+              <span class="nav-text">DigiLocker</span>
+            </div>
+          </a>
+          <a href="#passport" class="nav-item">
+            <div class="nav-item-left">
+              <span class="nav-icon">🪪</span>
+              <span class="nav-text">Guardian Passport</span>
+            </div>
+          </a>
+          <a href="#availability" class="nav-item">
+            <div class="nav-item-left">
+              <span class="nav-icon">🟢</span>
+              <span class="nav-text">Availability</span>
+            </div>
+          </a>
+          <a href="#bookings" class="nav-item">
+            <div class="nav-item-left">
+              <span class="nav-icon">📅</span>
+              <span class="nav-text">Bookings</span>
+            </div>
+            <span class="nav-badge" id="gPendingBadge">1</span>
+          </a>
+          <a href="#routines" class="nav-item">
+            <div class="nav-item-left">
+              <span class="nav-icon">📝</span>
+              <span class="nav-text">Care Routines</span>
+            </div>
+          </a>
+          <a href="#earnings" class="nav-item">
+            <div class="nav-item-left">
+              <span class="nav-icon">💰</span>
+              <span class="nav-text">Earnings</span>
+            </div>
+          </a>
+          <a href="#safety" class="nav-item">
+            <div class="nav-item-left">
+              <span class="nav-icon">🛡️</span>
+              <span class="nav-text">Safety Center</span>
+            </div>
+          </a>
+        </nav>
+      </div>
+
+      <div>
+        <!-- Ask Care Guide Card -->
+        <div class="ask-care-card">
+          <div class="ask-care-header">
+            <span>✦</span> Guardian AI Protocol
+          </div>
+          <div class="ask-care-text">
+            Ask safety guidance, child first-aid, or emergency response rules.
+          </div>
+          <button class="btn-care-guide" onclick="openGuardianAiDrawer()">
+            <span>Open AI Protocol</span>
+            <span>→</span>
+          </button>
+        </div>
+
+        <!-- Sidebar User Profile Footer -->
+        <div class="sidebar-user-footer">
+          <div class="user-profile-info">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80" class="user-avatar-img" alt="Ananya">
+            <div>
+              <div class="user-name-text">Ananya Sharma</div>
+              <div class="user-role-text">Caregiver</div>
+            </div>
+          </div>
+          <span class="icon-gear" title="Settings">⚙️</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT CANVAS -->
+    <main class="main-wrapper">
+      
+      <!-- TOP HEADER BAR -->
+      <header class="top-header">
+        <div>
+          <h1 class="header-greeting-title">Good morning, Ananya 👋</h1>
+          <div class="header-subtitle-row">
+            <span class="header-subtitle-text">Your care sessions and safety status are up to date.</span>
+            <span class="badge-safety-normal">
+              <span style="width: 6px; height: 6px; background: #059669; border-radius: 50%;"></span>
+              Caregiver Status: VERIFIED & ACTIVE
+            </span>
+          </div>
+        </div>
+
+        <div class="top-header-actions">
+          <div class="search-input-box">
+            <span>🔍</span>
+            <input type="text" placeholder="Search sessions, guidelines...">
+          </div>
+          <div class="header-icon-btn" title="Notifications">
+            🔔
+            <span class="notification-dot"></span>
+          </div>
+        </div>
+      </header>
+
+      <!-- HERO ACTIVE CARE TRACKER CARD -->
+      <section class="hero-active-care-card">
+        <div class="hero-card-header">
+          <div class="active-status-pulse">
+            <span class="pulse-dot"></span>
+            <span>Current Care Session</span>
+            <span style="font-size: 0.85rem; font-weight: 500; color: var(--sidebar-muted); margin-left: 0.5rem;">Child: Leo Jenkins (age 5)</span>
+          </div>
+
+          <div class="timer-pill">
+            <span>⏱ 02:14:30</span>
+            <span style="color: var(--sidebar-muted);">• active</span>
+          </div>
+        </div>
+
+        <div class="hero-caregiver-grid">
+          
+          <!-- LEFT CLIENT / SESSION INFO -->
+          <div>
+            <div class="caregiver-profile-block">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80" class="caregiver-hero-img" alt="Parent">
+              <div>
+                <div class="caregiver-hero-name">Sarah Jenkins</div>
+                <div class="caregiver-hero-sub">Morgan Home • 1.2 km away</div>
+                <div class="badge-id-verified">
+                  <span>✓</span> Checked in at 14:02 PM
+                </div>
+              </div>
+            </div>
+
+            <div class="caregiver-stats-row">
+              <div>
+                <div class="stat-item-num" style="color: #34d399;">96</div>
+                <div class="stat-item-lbl">TRUST SCORE</div>
+              </div>
+              <div>
+                <div class="stat-item-num">48</div>
+                <div class="stat-item-lbl">COMPLETED</div>
+              </div>
+              <div>
+                <div class="stat-item-num">₹24,800</div>
+                <div class="stat-item-lbl">THIS MONTH</div>
+              </div>
+            </div>
+
+            <div class="hero-action-buttons-row">
+              <button class="btn-hero-pill" onclick="handleCheckIn()">
+                <span>✓ Check In</span>
+              </button>
+              <button class="btn-hero-pill" onclick="handleCheckOut()">
+                <span>🚪 Check Out</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- RIGHT ACCOUNTABILITY SIGNALS -->
+          <div class="accountability-box">
+            <div style="font-size: 0.72rem; font-weight: 800; color: var(--sidebar-muted); letter-spacing: 0.08em; text-transform: uppercase;">
+              Active Telemetry & Proximity
+            </div>
+
+            <div class="signal-row">
+              <div class="signal-left">
+                <div class="signal-icon-wrap">📡</div>
+                <div>
+                  <div class="signal-title">Child Beacon</div>
+                  <div class="signal-desc" id="gBeaconDesc">CONNECTED • 3.4 m</div>
+                </div>
+              </div>
+              <div class="signal-status-check">
+                <span>Signal Strong (-52 dBm)</span>
+                <span>✓</span>
+              </div>
+            </div>
+
+            <div class="signal-row">
+              <div class="signal-left">
+                <div class="signal-icon-wrap">📍</div>
+                <div>
+                  <div class="signal-title">Location Status</div>
+                  <div class="signal-desc">Inside Safe Zone</div>
+                </div>
+              </div>
+              <div class="signal-status-check">
+                <span>Perimeter OK</span>
+                <span>✓</span>
+              </div>
+            </div>
+
+            <div class="signal-row">
+              <div class="signal-left">
+                <div class="signal-icon-wrap">🛡️</div>
+                <div>
+                  <div class="signal-title">Care Protocol</div>
+                  <div class="signal-desc">No Risk Signals</div>
+                </div>
+              </div>
+              <div class="signal-status-check">
+                <span>Verified</span>
+                <span>✓</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="hero-bottom-actions">
+          <button class="btn-hero-primary" onclick="simulateWarning()">
+            <span>⚠ Simulate Beacon Warning</span>
+          </button>
+          <button class="btn-hero-sos" onclick="openSosModal()">
+            <span>🚨 Emergency SOS</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- TWO COLUMN LAYOUT -->
+      <div class="dashboard-columns-grid">
+        
+        <!-- LEFT COLUMN: VERIFICATION + ROUTINES + BOOKINGS -->
+        <div>
+          
+          <!-- VERIFICATION STATUS CARD -->
+          <div class="card-white" id="verification" style="margin-bottom: 2rem;">
+            <div class="right-card-header" style="margin-bottom: 1.25rem;">
+              <div>
+                <div class="section-title-tag">EVIDENCE-BASED STANDARDS</div>
+                <h3 class="section-main-heading" style="font-size: 1.2rem;">Verification Badges</h3>
+              </div>
+              <span class="badge badge-verified">4-GATE PASSED</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem;">
+              <div style="background: var(--mint-bg); border: 1px solid #a7f3d0; padding: 1rem; border-radius: 12px; text-align: center;">
+                <div style="font-size: 1.5rem;">🪪</div>
+                <div style="font-size: 0.8rem; font-weight: 800; color: var(--text-dark); margin: 0.3rem 0;">Identity</div>
+                <span class="badge badge-verified" style="font-size: 0.65rem;">VERIFIED</span>
+              </div>
+              <div style="background: var(--mint-bg); border: 1px solid #a7f3d0; padding: 1rem; border-radius: 12px; text-align: center;">
+                <div style="font-size: 1.5rem;">🔍</div>
+                <div style="font-size: 0.8rem; font-weight: 800; color: var(--text-dark); margin: 0.3rem 0;">Background</div>
+                <span class="badge badge-verified" style="font-size: 0.65rem;">VERIFIED</span>
+              </div>
+              <div style="background: var(--mint-bg); border: 1px solid #a7f3d0; padding: 1rem; border-radius: 12px; text-align: center;">
+                <div style="font-size: 1.5rem;">🩺</div>
+                <div style="font-size: 0.8rem; font-weight: 800; color: var(--text-dark); margin: 0.3rem 0;">First Aid / CPR</div>
+                <span class="badge badge-verified" style="font-size: 0.65rem;">VERIFIED</span>
+              </div>
+              <div style="background: var(--mint-bg); border: 1px solid #a7f3d0; padding: 1rem; border-radius: 12px; text-align: center;">
+                <div style="font-size: 1.5rem;">📄</div>
+                <div style="font-size: 0.8rem; font-weight: 800; color: var(--text-dark); margin: 0.3rem 0;">Documents</div>
+                <span class="badge badge-verified" style="font-size: 0.65rem;">VERIFIED</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ASSIGNED CARE SESSIONS BOOKINGS -->
+          <div class="card-white" id="bookings" style="margin-bottom: 2rem;">
+            <div class="right-card-header" style="margin-bottom: 1rem;">
+              <h3 class="section-main-heading" style="font-size: 1.2rem;">Assigned Care Sessions</h3>
+              <span class="badge badge-warning" id="pendingCountBadge">1 Pending</span>
+            </div>
+
+            <div id="assignedBookingsGrid" style="display: flex; flex-direction: column; gap: 1rem;">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- ROUTINE LOGGING FORM -->
+          <div class="card-white" id="routines">
+            <div class="right-card-header" style="margin-bottom: 1rem;">
+              <h3 class="section-main-heading" style="font-size: 1.2rem;">Live Care Session Routine Log</h3>
+            </div>
+
+            <form id="routineForm" onsubmit="submitRoutineForm(event)">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                <div>
+                  <label style="font-weight: 700; font-size: 0.82rem; display: block; margin-bottom: 0.25rem;">Category</label>
+                  <select id="routineCategory" style="width: 100%; padding: 0.65rem; border: 1px solid var(--card-border); border-radius: 8px;">
+                    <option value="meal">Meal / Snack</option>
+                    <option value="medication">Medication / Reminder</option>
+                    <option value="activity">Learning & Play Activity</option>
+                    <option value="nap">Rest / Nap Time</option>
+                    <option value="hygiene">Hygiene / Restroom</option>
+                    <option value="note">General Care Note</option>
+                  </select>
+                </div>
+                <div>
+                  <label style="font-weight: 700; font-size: 0.82rem; display: block; margin-bottom: 0.25rem;">Title</label>
+                  <input type="text" id="routineTitle" placeholder="E.g. Served afternoon snack" required style="width: 100%; padding: 0.65rem; border: 1px solid var(--card-border); border-radius: 8px;">
+                </div>
+              </div>
+
+              <div style="margin-bottom: 1.25rem;">
+                <label style="font-weight: 700; font-size: 0.82rem; display: block; margin-bottom: 0.25rem;">Details & Notes</label>
+                <textarea id="routineDetails" placeholder="Observations, child response, intake details..." rows="3" style="width: 100%; padding: 0.65rem; border: 1px solid var(--card-border); border-radius: 8px;"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-purple" style="width: 100%;">Submit Care Report Log</button>
+            </form>
+          </div>
+
+        </div>
+
+        <!-- RIGHT SIDEBAR COLUMN: EARNINGS & SAFETY -->
+        <div class="right-sidebar-column">
+          
+          <!-- PAYOUT & EARNINGS CARD -->
+          <div class="right-card" id="earnings">
+            <div class="right-card-header">
+              <div>
+                <div class="right-card-title-tag">PAYOUT & EARNINGS</div>
+                <h3 class="right-card-heading">This Month</h3>
+              </div>
+              <span style="font-size: 1.3rem; font-weight: 800; color: #059669;">₹24,800</span>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.85rem;">
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--card-border); padding-bottom: 0.5rem;">
+                <span style="color: var(--text-muted);">Completed Care Hours</span>
+                <strong>38 Hours</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--card-border); padding-bottom: 0.5rem;">
+                <span style="color: var(--text-muted);">Tips & Performance Bonus</span>
+                <strong style="color: var(--primary-green);">+₹3,200</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span style="color: var(--text-muted);">Next Payout Date</span>
+                <strong>Friday, Oct 03</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- DIGILOCKER & GUARDIAN PASSPORT CARD -->
+          <div class="right-card" id="digilocker">
+            <div class="right-card-header">
+              <div>
+                <div class="right-card-title-tag">VERIFIED CREDENTIALS</div>
+                <h3 class="right-card-heading" id="passport">DigiLocker Passport</h3>
+              </div>
+              <span class="badge badge-verified">✓ 100% VERIFIED</span>
+            </div>
+            <div style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 0.75rem;">
+              Aadhaar, Police clearance certificate, and Pediatric First Aid certification verified via DigiLocker.
+            </div>
+            <div style="background: var(--secondary-green); padding: 0.65rem 0.85rem; border-radius: 8px; font-size: 0.78rem; font-weight: 700; color: var(--primary-green);" id="availability">
+              🟢 Status: Active & Available for Bookings
+            </div>
+          </div>
+
+          <!-- SAFETY CENTER CARD -->
+          <div class="right-card" id="safety">
+            <div class="right-card-header">
+              <h3 class="right-card-heading">Safety Center</h3>
+              <span class="badge badge-verified">ACTIVE</span>
+            </div>
+            <div style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 1rem;">
+              Always maintain line-of-sight supervision and ensure child beacon proximity stays under 10 meters.
+            </div>
+            <button class="btn btn-danger-coral" style="width: 100%;" onclick="openSosModal()">
+              🚨 Activate Emergency SOS
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div id="toast-container"></div>
+
+  <!-- EMERGENCY SOS MODAL -->
+  <div class="modal-overlay" id="sosModal">
+    <div class="modal-card">
+      <h3 style="color: var(--coral-danger); font-size: 1.4rem; margin-bottom: 0.75rem;">🚨 Emergency SOS Alert</h3>
+      <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.92rem;">
+        Are you sure you want to trigger an emergency alert? This will immediately broadcast your location and alert the Admin Safety Command Center.
+      </p>
+      <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+        <button class="btn btn-outline-dark" onclick="closeSosModal()">Cancel</button>
+        <button class="btn btn-danger-coral" onclick="confirmSosAlert()">Trigger SOS</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GUARDIAN AI DRAWER -->
+  <div class="modal-overlay" id="gAiDrawerModal">
+    <div class="modal-card" style="max-width: 600px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h3 style="font-size: 1.25rem; color: var(--primary-green); font-weight: 800;">🤖 Guardian AI Protocol Assistant</h3>
+        <button onclick="closeGuardianAiDrawer()" style="background: none; border: none; font-size: 1.2rem; cursor: pointer;">✕</button>
+      </div>
+      <div id="gAiChatWindow" style="background: var(--main-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 1rem; height: 260px; overflow-y: auto; margin-bottom: 1rem; font-size: 0.88rem;">
+        <div style="color: var(--text-muted); font-style: italic;">Hello Ananya! Ask any question regarding child safety protocols, first-aid steps, or care routines.</div>
+      </div>
+      <form onsubmit="handleGAiSubmit(event)" style="display: flex; gap: 0.75rem;">
+        <input type="text" id="gAiInput" placeholder="Ask Caregiver AI..." required style="flex: 1; padding: 0.75rem 1rem; border: 1px solid var(--card-border); border-radius: var(--radius-md); font-size: 0.88rem;">
+        <button type="submit" class="btn btn-purple" id="gAiSubmitBtn">Ask AI</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="/guardian/app.js?v=2.1.0"></script>
+</body>
+</html>

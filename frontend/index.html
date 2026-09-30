@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guardian Go | Trusted Care. Smarter Safety.</title>
+  <link rel="stylesheet" href="/static/styles.css?v=2.1.0">
+  <style>
+    body {
+      background: var(--sidebar-bg);
+      color: white;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .login-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+      max-width: 1120px;
+      min-height: 640px;
+      background: #1B2E24;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--sidebar-border);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+      overflow: hidden;
+      margin: 2rem;
+    }
+    .login-left {
+      background: linear-gradient(135deg, #1B2E24 0%, #274033 100%);
+      padding: 3.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: 1px solid var(--sidebar-border);
+    }
+    .login-right {
+      background: #ffffff;
+      color: var(--text-dark);
+      padding: 3.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .brand-logo-hero {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+    .hero-shield-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #2e7d56 0%, #4F9D69 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 6px 16px rgba(46, 125, 86, 0.4);
+    }
+    .login-headline {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    .login-subhead {
+      color: var(--sidebar-muted);
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 2rem;
+    }
+    .feature-card-preview {
+      background: rgba(39, 64, 51, 0.7);
+      border: 1px solid var(--sidebar-border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      backdrop-filter: blur(8px);
+    }
+    .demo-role-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .demo-role-btn {
+      background: var(--main-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 0.85rem 0.5rem;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--text-dark);
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .demo-role-btn:hover {
+      background: var(--secondary-green);
+      border-color: var(--primary-green-light);
+      transform: translateY(-2px);
+    }
+    .demo-role-btn strong {
+      font-size: 0.82rem;
+      color: var(--primary-green);
+    }
+    .demo-role-btn span {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+    @media (max-width: 900px) {
+      .login-container {
+        grid-template-columns: 1fr;
+        margin: 1rem;
+      }
+      .login-left {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    
+    <!-- LEFT SIDE BRANDING & ILLUSTRATION -->
+    <div class="login-left">
+      <div>
+        <div class="brand-logo-hero">
+          <div class="hero-shield-icon">🛡️</div>
+          <div>
+            <div style="font-weight: 800; font-size: 1.5rem; letter-spacing: -0.02em;">Guardian Go</div>
+            <div style="font-size: 0.7rem; font-weight: 700; color: var(--sidebar-muted); letter-spacing: 0.12em; text-transform: uppercase;">CARE, VERIFIED</div>
+          </div>
+        </div>
+
+        <h1 class="login-headline">Trusted care.<br>Smarter safety.</h1>
+        <p class="login-subhead">
+          AI-powered safe caregiver & family care platform with 4-gate verification, live BLE child proximity monitoring, and instant 1-tap emergency response.
+        </p>
+      </div>
+
+      <!-- ABSTRACT SAFETY PREVIEW CARD -->
+      <div class="feature-card-preview">
+        <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.65rem; font-weight: 700; font-size: 0.9rem; color: #34d399;">
+          <span style="width: 8px; height: 8px; background: #34d399; border-radius: 50%; display: inline-block;"></span>
+          Live Accountability Network Active
+        </div>
+        <div style="font-size: 0.82rem; color: var(--sidebar-muted); line-height: 1.4;">
+          📡 BLE Beacon Connected (8m) • 🟢 Identity & Background Verified • 🚨 1-Tap SOS Ready
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDE LOGIN CARD & ROLE SELECTOR -->
+    <div class="login-right">
+      <div style="margin-bottom: 2rem;">
+        <h2 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 0.35rem;">Welcome back</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Sign in to your Guardian Go account or select a demo role.</p>
+      </div>
+
+      <form onsubmit="handleLoginSubmit(event)">
+        <div style="margin-bottom: 1.1rem;">
+          <label style="font-size: 0.82rem; font-weight: 700; display: block; margin-bottom: 0.35rem; color: var(--text-dark);">Email address</label>
+          <input type="email" id="loginEmail" placeholder="parent@demo.com" value="parent@demo.com" required style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--card-border); border-radius: var(--radius-md); font-family: inherit; font-size: 0.9rem; outline: none;">
+        </div>
+
+        <div style="margin-bottom: 1.25rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+            <label style="font-size: 0.82rem; font-weight: 700; color: var(--text-dark);">Password</label>
+            <a href="#" onclick="alert('Demo reset instructions sent!')" style="font-size: 0.78rem; color: var(--primary-green); text-decoration: none; font-weight: 600;">Forgot password?</a>
+          </div>
+          <input type="password" id="loginPassword" value="••••••••••••" required style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--card-border); border-radius: var(--radius-md); font-family: inherit; font-size: 0.9rem; outline: none;">
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem;">
+          <input type="checkbox" id="rememberMe" checked style="accent-color: var(--primary-green);">
+          <label for="rememberMe" style="font-size: 0.82rem; color: var(--text-muted); font-weight: 500;">Remember this device</label>
+        </div>
+
+        <button type="submit" class="btn btn-purple" style="width: 100%; padding: 0.85rem; font-size: 0.95rem;">Sign In to Dashboard</button>
+      </form>
+
+      <!-- DEMO ROLE QUICK SELECTOR -->
+      <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--card-border);">
+        <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; text-align: center;">
+          ⚡ Or Launch Quick Demo Role
+        </div>
+
+        <div class="demo-role-grid">
+          <a href="/portals/user/" class="demo-role-btn">
+            <span style="font-size: 1.4rem;">👨‍👩‍👧</span>
+            <strong>Parent Demo</strong>
+            <span>parent@demo.com</span>
+          </a>
+
+          <a href="/portals/guardian/" class="demo-role-btn">
+            <span style="font-size: 1.4rem;">👩‍⚕️</span>
+            <strong>Guardian Demo</strong>
+            <span>guardian@demo.com</span>
+          </a>
+
+          <a href="/portals/admin/" class="demo-role-btn">
+            <span style="font-size: 1.4rem;">⚙️</span>
+            <strong>Admin Demo</strong>
+            <span>admin@demo.com</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function handleLoginSubmit(event) {
+      event.preventDefault();
+      const email = document.getElementById("loginEmail").value.toLowerCase();
+      if (email.includes("guardian")) {
+        window.location.href = "/portals/guardian/";
+      } else if (email.includes("admin")) {
+        window.location.href = "/portals/admin/";
+      } else {
+        window.location.href = "/portals/user/";
+      }
+    }
+  </script>
+</body>
+</html>

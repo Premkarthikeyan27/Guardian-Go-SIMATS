@@ -1,0 +1,19 @@
+/* Guardian Dashboard Styles */
+.verif-box {
+  background: var(--mint-bg);
+  border: 1px solid #a7f3d0;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.verif-title {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--text-dark);
+}

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parent Portal Login | Guardian Go</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <style>
+    body {
+      background: var(--main-bg);
+      color: var(--text-dark);
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-family);
+    }
+    .auth-card-container {
+      width: 100%;
+      max-width: 960px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow-hover);
+      overflow: hidden;
+      margin: 2rem;
+    }
+    .auth-hero-panel {
+      background: var(--hero-bg);
+      color: white;
+      padding: 3rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .auth-form-panel {
+      padding: 3rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 800;
+      font-size: 1.4rem;
+    }
+    .shield-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--primary-green-light);
+      color: var(--text-dark);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.35rem;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+    }
+    .form-group input:focus {
+      border-color: var(--primary-green);
+    }
+    .btn-submit {
+      width: 100%;
+      background: var(--primary-green);
+      color: white;
+      padding: 0.85rem;
+      border: none;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-submit:hover {
+      background: var(--accent-green-hover);
+    }
+    .auth-toggle-link {
+      text-align: center;
+      margin-top: 1.25rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .auth-toggle-link a {
+      color: var(--primary-green);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .alert-banner {
+      padding: 0.75rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      display: none;
+    }
+    .alert-error {
+      background: var(--coral-light);
+      color: var(--coral-text);
+      border: 1px solid var(--coral-btn-border);
+    }
+    @media (max-width: 768px) {
+      .auth-card-container { grid-template-columns: 1fr; }
+      .auth-hero-panel { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="auth-card-container">
+    <div class="auth-hero-panel">
+      <div>
+        <div class="brand-logo">
+          <div class="shield-icon">🛡️</div>
+          <div>Guardian Go</div>
+        </div>
+        <h2 style="font-size: 1.8rem; margin-top: 2rem; margin-bottom: 0.75rem; font-weight: 800;">Parent & Family Portal</h2>
+        <p style="color: var(--sidebar-muted); line-height: 1.5; font-size: 0.95rem;">
+          Verified care for your children. Real-time BLE safety alerts, daily caregiver updates, and instant emergency protection.
+        </p>
+      </div>
+
+      <div style="background: var(--hero-inner-bg); border: 1px solid var(--hero-border); padding: 1.2rem; border-radius: var(--radius-md);">
+        <div style="font-weight: 700; font-size: 0.85rem; color: var(--primary-green-light); margin-bottom: 0.3rem;">🌱 Soft Light Green Safety Platform</div>
+        <div style="font-size: 0.8rem; color: var(--sidebar-muted);">Encrypted RBAC authentication protecting your family data.</div>
+      </div>
+    </div>
+
+    <div class="auth-form-panel">
+      <div id="loginSection">
+        <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.35rem;">Parent Sign In</h2>
+        <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.5rem;">Access your family dashboard and care history.</p>
+
+        <div id="alertBox" class="alert-banner alert-error"></div>
+
+        <form onsubmit="handleParentLogin(event)">
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="email" value="parent@demo.com" required>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="password" value="password123" required>
+          </div>
+          <button type="submit" class="btn-submit">Sign In to Family Dashboard</button>
+        </form>
+
+        <div class="auth-toggle-link">
+          Don't have an account? <a href="#" onclick="toggleMode('register')">Register as Parent</a>
+        </div>
+      </div>
+
+      <div id="registerSection" style="display: none;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.35rem;">Public Parent Registration</h2>
+        <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.5rem;">Create your family account in seconds.</p>
+
+        <div id="regAlertBox" class="alert-banner alert-error"></div>
+
+        <form onsubmit="handleParentRegister(event)">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="regName" placeholder="Sarah Jenkins" required>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="regEmail" placeholder="parent@example.com" required>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="regPassword" placeholder="••••••••" required>
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="text" id="regPhone" placeholder="+1 555-0192">
+          </div>
+          <button type="submit" class="btn-submit">Create Parent Account</button>
+        </form>
+
+        <div class="auth-toggle-link">
+          Already have an account? <a href="#" onclick="toggleMode('login')">Sign In</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleMode(mode) {
+      document.getElementById('loginSection').style.display = mode === 'login' ? 'block' : 'none';
+      document.getElementById('registerSection').style.display = mode === 'register' ? 'block' : 'none';
+    }
+
+    async function handleParentLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const alertBox = document.getElementById('alertBox');
+      alertBox.style.display = 'none';
+
+      try {
+        const res = await fetch('/api/v1/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          alertBox.innerText = data.detail || 'Authentication failed';
+          alertBox.style.display = 'block';
+          return;
+        }
+        localStorage.setItem('gg_token', data.access_token);
+        localStorage.setItem('gg_user', JSON.stringify(data.user));
+        window.location.href = '/portals/user/';
+      } catch (err) {
+        alertBox.innerText = 'Network error during login';
+        alertBox.style.display = 'block';
+      }
+    }
+
+    async function handleParentRegister(e) {
+      e.preventDefault();
+      const name = document.getElementById('regName').value;
+      const email = document.getElementById('regEmail').value;
+      const password = document.getElementById('regPassword').value;
+      const phone = document.getElementById('regPhone').value;
+      const alertBox = document.getElementById('regAlertBox');
+      alertBox.style.display = 'none';
+
+      try {
+        const res = await fetch('/api/v1/auth/register/parent', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, password, phone })
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          alertBox.innerText = data.detail || 'Registration failed';
+          alertBox.style.display = 'block';
+          return;
+        }
+        localStorage.setItem('gg_token', data.access_token);
+        localStorage.setItem('gg_user', JSON.stringify(data.user));
+        window.location.href = '/portals/user/';
+      } catch (err) {
+        alertBox.innerText = 'Network error during registration';
+        alertBox.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>

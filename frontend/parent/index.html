@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guardian Go | Parent Dashboard</title>
+  <link rel="stylesheet" href="/static/styles.css?v=2.1.0">
+  <link rel="stylesheet" href="/parent/styles.css?v=2.1.0">
+</head>
+<body>
+
+  <div class="app-layout">
+    
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar">
+      <div>
+        <div class="sidebar-header">
+          <a href="/" class="sidebar-brand">
+            <div class="brand-icon-shield">🛡️</div>
+            <div class="brand-text-wrapper">
+              <span class="brand-title">Guardian Go</span>
+              <span class="brand-subtitle">CARE, VERIFIED</span>
+            </div>
+          </a>
+
+          <!-- Workspace / Family Selector Box -->
+          <div class="workspace-selector">
+            <div class="workspace-info">
+              <div class="avatar-initials">JM</div>
+              <div>
+                <div class="workspace-title">The Morgan family</div>
+                <div class="workspace-sub">3 care profiles</div>
+              </div>
+            </div>
+            <span style="font-size: 0.8rem; color: var(--sidebar-muted);">⇕</span>
+          </div>
+        </div>
+
+        <div class="nav-section-label">WORKSPACE</div>
+        <nav class="sidebar-nav-section">
+          <a href="#overview" class="nav-item active">
+            <div class="nav-item-left">
+              <span class="nav-icon">📊</span>
+              <span class="nav-text">Overview</span>
+            </div>
+          </a>
+          <a href="#guardians" class="nav-item">
+            <div class="nav-item-left">
+              <span class="nav-icon">🔍</span>
+              <span class="nav-text">Find a Guardian</span>
+            </div>
+          </a>
+          <a href="#bookings" class="nav-item">
+            <div class="nav-item-left">
+              <span class="nav-icon">📅</span>
+              <span class="nav-text">Bookings</span>
+            </div>
+            <span class="nav-badge">2</span>
+          </a>
+          <a href="#reports" class="nav-item">
+            <div class="nav-item-left">
+              <span class="nav-icon">📋</span>
+              <span class="nav-text">Care reports</span>
+            </div>
+          </a>
+          <a href="#safety" class="nav-item">
+            <div class="nav-item-left">
+              <span class="nav-icon">🛡️</span>
+              <span class="nav-text">Safety center</span>
+            </div>
+          </a>
+          <a href="#family" class="nav-item">
+            <div class="nav-item-left">
+              <span class="nav-icon">👨‍👩‍👧</span>
+              <span class="nav-text">Family</span>
+            </div>
+          </a>
+          <a href="#membership" class="nav-item">
+            <div class="nav-item-left">
+              <span class="nav-icon">💎</span>
+              <span class="nav-text">Membership</span>
+            </div>
+          </a>
+        </nav>
+      </div>
+
+      <div>
+        <!-- Ask Care Guide Card -->
+        <div class="ask-care-card">
+          <div class="ask-care-header">
+            <span>✦</span> Ask Care Guide
+          </div>
+          <div class="ask-care-text">
+            Get help with bookings, routines, and today's care.
+          </div>
+          <button class="btn-care-guide" onclick="openAiDrawer()">
+            <span>Start a conversation</span>
+            <span>→</span>
+          </button>
+        </div>
+
+        <!-- Sidebar User Profile Footer -->
+        <div class="sidebar-user-footer">
+          <div class="user-profile-info">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80" class="user-avatar-img" alt="Jordan">
+            <div>
+              <div class="user-name-text">Jordan Morgan</div>
+              <div class="user-role-text">Family admin</div>
+            </div>
+          </div>
+          <span class="icon-gear" title="Settings">⚙️</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT CANVAS -->
+    <main class="main-wrapper">
+      
+      <!-- TOP HEADER BAR -->
+      <header class="top-header">
+        <div>
+          <h1 class="header-greeting-title">Good afternoon, Jordan 👋</h1>
+          <div class="header-subtitle-row">
+            <span class="header-subtitle-text">Maya's care is active and everything looks on track.</span>
+            <span class="badge-safety-normal">
+              <span style="width: 6px; height: 6px; background: #059669; border-radius: 50%;"></span>
+              All safety signals normal
+            </span>
+          </div>
+        </div>
+
+        <div class="top-header-actions">
+          <div class="search-input-box">
+            <span>🔍</span>
+            <input type="text" placeholder="Search care, Guardians...">
+          </div>
+          <div class="header-icon-btn" title="Notifications">
+            🔔
+            <span class="notification-dot"></span>
+          </div>
+        </div>
+      </header>
+
+      <!-- HERO ACTIVE CARE CARD -->
+      <section class="hero-active-care-card">
+        <div class="hero-card-header">
+          <div class="active-status-pulse">
+            <span class="pulse-dot"></span>
+            <span>Care session active</span>
+            <span style="font-size: 0.85rem; font-weight: 500; color: var(--sidebar-muted); margin-left: 0.5rem;">Continuous safety monitoring is on</span>
+          </div>
+
+          <div class="timer-pill" id="heroTimerPill">
+            <span>⏱ 01:42:18</span>
+            <span style="color: var(--sidebar-muted);">• ends 6:00 PM</span>
+          </div>
+        </div>
+
+        <div class="hero-caregiver-grid">
+          
+          <!-- LEFT CAREGIVER INFO -->
+          <div>
+            <div class="caregiver-profile-block">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80" class="caregiver-hero-img" alt="Elena Park">
+              <div>
+                <div class="caregiver-hero-name">Elena Park</div>
+                <div class="caregiver-hero-sub">Caring for Maya • age 7</div>
+                <div class="badge-id-verified">
+                  <span>✓</span> Identity verified
+                </div>
+              </div>
+            </div>
+
+            <div class="caregiver-stats-row">
+              <div>
+                <div class="stat-item-num" style="color: #34d399;">98</div>
+                <div class="stat-item-lbl">TRUST SCORE</div>
+              </div>
+              <div>
+                <div class="stat-item-num">126</div>
+                <div class="stat-item-lbl">SESSIONS</div>
+              </div>
+              <div>
+                <div class="stat-item-num">4.9</div>
+                <div class="stat-item-lbl">RATING</div>
+              </div>
+            </div>
+
+            <div class="hero-action-buttons-row">
+              <button class="btn-hero-pill" onclick="alert('Messaging Elena Park...')">
+                <span>💬 Message</span>
+              </button>
+              <button class="btn-hero-pill" style="padding: 0.6rem 0.85rem;" onclick="alert('Calling Caregiver...')">
+                📞
+              </button>
+            </div>
+          </div>
+
+          <!-- RIGHT ACCOUNTABILITY SIGNALS BOX -->
+          <div class="accountability-box">
+            <div style="font-size: 0.72rem; font-weight: 800; color: var(--sidebar-muted); letter-spacing: 0.08em; text-transform: uppercase;">
+              Live accountability signals
+            </div>
+
+            <!-- Signal 1: BLE -->
+            <div class="signal-row">
+              <div class="signal-left">
+                <div class="signal-icon-wrap">📡</div>
+                <div>
+                  <div class="signal-title">Live presence</div>
+                  <div class="signal-desc" id="heroBleSignalText">BLE connected • 8 m</div>
+                </div>
+              </div>
+              <div class="signal-status-check">
+                <span>Updated just now</span>
+                <span>✓</span>
+              </div>
+            </div>
+
+            <!-- Signal 2: Location -->
+            <div class="signal-row">
+              <div class="signal-left">
+                <div class="signal-icon-wrap">📍</div>
+                <div>
+                  <div class="signal-title">Care location</div>
+                  <div class="signal-desc">Morgan home</div>
+                </div>
+              </div>
+              <div class="signal-status-check">
+                <span>Within trusted zone</span>
+                <span>✓</span>
+              </div>
+            </div>
+
+            <!-- Signal 3: Safety -->
+            <div class="signal-row">
+              <div class="signal-left">
+                <div class="signal-icon-wrap">🛡️</div>
+                <div>
+                  <div class="signal-title">Safety status</div>
+                  <div class="signal-desc">No risk signals</div>
+                </div>
+              </div>
+              <div class="signal-status-check">
+                <span>AI checks passed</span>
+                <span>✓</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- HERO BOTTOM ACTION BUTTONS -->
+        <div class="hero-bottom-actions">
+          <button class="btn-hero-primary" onclick="openLiveSafetyModal()">
+            <span>✦ Open live safety view</span>
+          </button>
+          <button class="btn-hero-sos" onclick="openSosModal()">
+            <span>🚨 Emergency</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- TWO COLUMN DASHBOARD GRID -->
+      <div class="dashboard-columns-grid">
+        
+        <!-- LEFT COLUMN: RECOMMENDED GUARDIANS -->
+        <div>
+          <div class="section-header-row">
+            <div>
+              <div class="section-title-tag">VERIFIED FOR YOUR FAMILY</div>
+              <h2 class="section-main-heading">Recommended Guardians</h2>
+            </div>
+            <a href="#guardians" class="link-view-all">View all Guardians ↗</a>
+          </div>
+
+          <div class="guardians-cards-grid" id="recommendedGuardiansGrid">
+            
+            <!-- Guardian 1: Sofia Bennett -->
+            <div class="guardian-card-item">
+              <div>
+                <div class="guardian-card-image-wrap">
+                  <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500" alt="Sofia">
+                  <div class="badge-trust-score">
+                    <span>🛡️</span> Trust 97
+                  </div>
+                  <button class="btn-favorite-heart">🤍</button>
+                </div>
+
+                <div class="guardian-name-row">
+                  <div class="guardian-card-name">Sofia Bennett</div>
+                  <div class="guardian-rating-star">⭐ 4.9</div>
+                </div>
+                <div class="guardian-category-text">Child care specialist</div>
+
+                <div class="guardian-verif-tags">
+                  <span>🟢 ID + background verified</span>
+                  <span style="color: var(--text-muted); font-weight: 500;">8 years</span>
+                </div>
+
+                <div class="skill-pills-row">
+                  <span class="skill-pill">Homework</span>
+                  <span class="skill-pill">Meal prep</span>
+                </div>
+
+                <div class="next-avail-text">
+                  <span>📅 Next Available:</span>
+                  <strong style="color: var(--text-dark);">Today • 5:30 PM</strong>
+                </div>
+              </div>
+
+              <button class="btn-card-action" onclick="openBookingModal(1, 'Sofia Bennett')">
+                <span>View verified profile</span>
+                <span>→</span>
+              </button>
+            </div>
+
+            <!-- Guardian 2: Marcus Reed -->
+            <div class="guardian-card-item">
+              <div>
+                <div class="guardian-card-image-wrap">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500" alt="Marcus">
+                  <div class="badge-trust-score">
+                    <span>🛡️</span> Trust 95
+                  </div>
+                  <button class="btn-favorite-heart">🤍</button>
+                </div>
+
+                <div class="guardian-name-row">
+                  <div class="guardian-card-name">Marcus Reed</div>
+                  <div class="guardian-rating-star">⭐ 4.8</div>
+                </div>
+                <div class="guardian-category-text">Family support Guardian</div>
+
+                <div class="guardian-verif-tags">
+                  <span>🟢 ID + background verified</span>
+                  <span style="color: var(--text-muted); font-weight: 500;">6 years</span>
+                </div>
+
+                <div class="skill-pills-row">
+                  <span class="skill-pill">School pickup</span>
+                  <span class="skill-pill">Sports</span>
+                </div>
+
+                <div class="next-avail-text">
+                  <span>📅 Next Available:</span>
+                  <strong style="color: var(--text-dark);">Tomorrow • 3:00 PM</strong>
+                </div>
+              </div>
+
+              <button class="btn-card-action" onclick="openBookingModal(3, 'Marcus Reed')">
+                <span>View verified profile</span>
+                <span>→</span>
+              </button>
+            </div>
+
+            <!-- Guardian 3: Priya Nair -->
+            <div class="guardian-card-item">
+              <div>
+                <div class="guardian-card-image-wrap">
+                  <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500" alt="Priya">
+                  <div class="badge-trust-score">
+                    <span>🛡️</span> Trust 99
+                  </div>
+                  <button class="btn-favorite-heart">🤍</button>
+                </div>
+
+                <div class="guardian-name-row">
+                  <div class="guardian-card-name">Priya Nair</div>
+                  <div class="guardian-rating-star">⭐ 5.0</div>
+                </div>
+                <div class="guardian-category-text">Pediatric care aide</div>
+
+                <div class="guardian-verif-tags">
+                  <span>🟢 ID + background verified</span>
+                  <span style="color: var(--text-muted); font-weight: 500;">10 years</span>
+                </div>
+
+                <div class="skill-pills-row">
+                  <span class="skill-pill">Medication</span>
+                  <span class="skill-pill">Bedtime</span>
+                </div>
+
+                <div class="next-avail-text">
+                  <span>📅 Next Available:</span>
+                  <strong style="color: var(--text-dark);">Fri • 4:00 PM</strong>
+                </div>
+              </div>
+
+              <button class="btn-card-action" onclick="openBookingModal(2, 'Priya Nair')">
+                <span>View verified profile</span>
+                <span>→</span>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- RIGHT SIDEBAR COLUMN CARDS -->
+        <div class="right-sidebar-column">
+          
+          <!-- UPCOMING BOOKING CARD -->
+          <div class="right-card" id="bookings-card">
+            <div class="right-card-header">
+              <div>
+                <div class="right-card-title-tag">NEXT ON YOUR CALENDAR</div>
+                <h3 class="right-card-heading">Upcoming booking</h3>
+              </div>
+              <a href="#bookings" style="font-size: 0.78rem; color: var(--primary-green); font-weight: 700; text-decoration: none;">Manage</a>
+            </div>
+
+            <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1rem;">
+              <div style="background: var(--secondary-green); border-radius: 10px; padding: 0.5rem 0.75rem; text-align: center; color: var(--primary-green);">
+                <div style="font-size: 0.65rem; font-weight: 800;">OCT</div>
+                <div style="font-size: 1.2rem; font-weight: 800; line-height: 1;">02</div>
+              </div>
+              <div>
+                <div style="font-weight: 700; font-size: 0.95rem;">After-school care for Maya</div>
+                <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;">⏱ Friday • 3:15–6:00 PM</div>
+                <div style="margin-top: 0.4rem;">
+                  <span class="badge badge-verified" style="font-size: 0.7rem;">✓ Confirmed</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 0.65rem; padding-top: 0.75rem; border-top: 1px solid var(--card-border);">
+              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
+              <div style="font-size: 0.82rem; font-weight: 700;">
+                Priya Nair
+                <span style="font-size: 0.72rem; color: var(--mint-text); font-weight: 600; display: block;">✓ Verified • Trust 99</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- RECENT CARE REPORT CARD -->
+          <div class="right-card" id="reports-card">
+            <div class="right-card-header">
+              <div>
+                <div class="right-card-title-tag">COMPLETED MONDAY</div>
+                <h3 class="right-card-heading">Recent care report</h3>
+              </div>
+              <a href="#reports" style="font-size: 0.78rem; color: var(--primary-green); font-weight: 700; text-decoration: none;">Open report</a>
+            </div>
+
+            <div style="display: flex; gap: 0.85rem; align-items: center; margin-bottom: 0.85rem;">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=120" style="width: 48px; height: 48px; border-radius: 10px; object-fit: cover;">
+              <div>
+                <div style="font-weight: 700; font-size: 0.9rem;">A calm, creative afternoon</div>
+                <div style="font-size: 0.78rem; color: var(--text-muted);">Homework finished, dinner at 5:10, and all routines completed.</div>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 0.75rem;">
+              <div style="background: var(--secondary-green); padding: 0.5rem; border-radius: 8px;">
+                <div style="font-size: 0.65rem; color: var(--text-muted); font-weight: 800; text-transform: uppercase;">MOOD</div>
+                <div style="font-size: 0.82rem; font-weight: 800; color: var(--mint-pill-text);">Happy & settled</div>
+              </div>
+              <div style="background: var(--secondary-green); padding: 0.5rem; border-radius: 8px;">
+                <div style="font-size: 0.65rem; color: var(--text-muted); font-weight: 800; text-transform: uppercase;">CHECK-INS</div>
+                <div style="font-size: 0.82rem; font-weight: 800; color: var(--primary-green);">4 of 4 logged</div>
+              </div>
+            </div>
+
+            <div style="font-size: 0.75rem; color: var(--mint-text); font-weight: 600; display: flex; align-items: center; gap: 0.35rem;">
+              <span>🛡️</span> Timeline, handoff notes, and location record complete
+            </div>
+          </div>
+
+          <!-- MEMBERSHIP STATUS CARD -->
+          <div class="right-card" id="membership">
+            <div class="right-card-header">
+              <div>
+                <div class="right-card-title-tag">FAMILY PROTECTION PLAN</div>
+                <h3 class="right-card-heading">Membership Status</h3>
+              </div>
+              <span class="badge badge-verified">ACTIVE PRO</span>
+            </div>
+
+            <div style="background: var(--main-bg); border: 1px solid var(--card-border); border-radius: 10px; padding: 0.85rem; margin-bottom: 0.75rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                <span style="font-weight: 700; font-size: 0.9rem;">Guardian Go Family Pro</span>
+                <span style="font-weight: 800; color: var(--primary-green); font-size: 0.85rem;">₹2,499/mo</span>
+              </div>
+              <div style="font-size: 0.78rem; color: var(--text-muted);">
+                ✓ Unlimited Guardian bookings • Live BLE telemetry • Emergency SOS dispatch
+              </div>
+            </div>
+
+            <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">
+              Next renewal: <strong>October 15, 2026</strong>
+            </div>
+          </div>
+
+          <!-- NOTIFICATIONS CARD -->
+          <div class="right-card" id="notifications-card">
+            <div class="right-card-header">
+              <h3 class="right-card-heading">
+                Notifications
+                <span class="nav-badge" style="margin-left: 0.4rem;">3</span>
+              </h3>
+              <a href="#" style="font-size: 0.75rem; color: var(--text-muted); text-decoration: none;">Mark all read</a>
+            </div>
+
+            <div class="notification-item">
+              <div class="notif-icon-circle">✓</div>
+              <div>
+                <div class="notif-title">Elena completed arrival verification</div>
+                <div class="notif-time">24 min ago</div>
+              </div>
+            </div>
+
+            <div class="notification-item">
+              <div class="notif-icon-circle" style="background: var(--secondary-green); color: var(--primary-green);">📄</div>
+              <div>
+                <div class="notif-title">Care report from Monday is ready</div>
+                <div class="notif-time">Yesterday</div>
+              </div>
+            </div>
+
+            <div class="notification-item">
+              <div class="notif-icon-circle" style="background: var(--warning-light); color: var(--warning-orange);">📅</div>
+              <div>
+                <div class="notif-title">Confirm Friday's booking with Priya</div>
+                <div class="notif-time">Due today</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAMILY SAFETY RECORD COMPLETE BANNER -->
+          <div class="family-safety-complete-box" id="family-safety-box">
+            <div style="font-size: 1.4rem;">🛡️</div>
+            <div>
+              <div class="family-safety-title">Your family safety record is complete</div>
+              <div class="family-safety-sub">Profiles, emergency contacts, and trusted places are up to date.</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div id="toast-container"></div>
+
+  <!-- EMERGENCY SOS MODAL -->
+  <div class="modal-overlay" id="sosModal">
+    <div class="modal-card">
+      <h3 style="color: var(--coral-danger); font-size: 1.4rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+        🚨 Emergency SOS Alert
+      </h3>
+      <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.95rem;">
+        Are you sure you want to trigger an emergency alert? This will immediately notify emergency contacts, broadcast live GPS coordinates, and alert the Admin Safety Center.
+      </p>
+      <p style="font-size: 0.8rem; color: var(--text-muted); background: var(--main-bg); padding: 0.6rem; border-radius: 8px; margin-bottom: 1.5rem;">
+        ℹ️ Hackathon Demo: Simulated emergency workflow.
+      </p>
+      <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+        <button class="btn btn-outline-dark" onclick="closeSosModal()">Cancel</button>
+        <button class="btn btn-danger-coral" onclick="confirmSosAlert()">Trigger SOS</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOOKING MODAL -->
+  <div class="modal-overlay" id="bookingModal">
+    <div class="modal-card">
+      <h3 style="font-size: 1.3rem; margin-bottom: 1rem; color: var(--primary-green);">📅 Book Guardian Care</h3>
+      <form id="bookingForm" onsubmit="submitBooking(event)">
+        <input type="hidden" id="bookGuardianId">
+        <div style="margin-bottom: 1rem;">
+          <label style="font-weight: 700; font-size: 0.85rem; display: block; margin-bottom: 0.25rem;">Selected Guardian</label>
+          <input type="text" id="bookGuardianName" readonly style="width: 100%; padding: 0.65rem; border: 1px solid var(--card-border); border-radius: 8px; background: var(--main-bg); font-weight: 700;">
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+          <div>
+            <label style="font-weight: 700; font-size: 0.85rem; display: block; margin-bottom: 0.25rem;">Date</label>
+            <input type="text" id="bookDate" value="Today" required style="width: 100%; padding: 0.65rem; border: 1px solid var(--card-border); border-radius: 8px;">
+          </div>
+          <div>
+            <label style="font-weight: 700; font-size: 0.85rem; display: block; margin-bottom: 0.25rem;">Time Slot</label>
+            <input type="text" id="bookTime" value="15:15 - 18:00" required style="width: 100%; padding: 0.65rem; border: 1px solid var(--card-border); border-radius: 8px;">
+          </div>
+        </div>
+        <div style="margin-bottom: 1rem;">
+          <label style="font-weight: 700; font-size: 0.85rem; display: block; margin-bottom: 0.25rem;">Care Type</label>
+          <select id="bookCareType" style="width: 100%; padding: 0.65rem; border: 1px solid var(--card-border); border-radius: 8px;">
+            <option value="After-school Care">After-school Care</option>
+            <option value="Evening Supervision">Evening Supervision</option>
+            <option value="Specialized Care">Specialized Educational Care</option>
+          </select>
+        </div>
+        <div style="margin-bottom: 1.5rem;">
+          <label style="font-weight: 700; font-size: 0.85rem; display: block; margin-bottom: 0.25rem;">Care Notes</label>
+          <textarea id="bookNotes" placeholder="Provide any special instructions..." rows="3" style="width: 100%; padding: 0.65rem; border: 1px solid var(--card-border); border-radius: 8px;"></textarea>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button type="button" class="btn btn-outline-dark" onclick="closeBookingModal()">Cancel</button>
+          <button type="submit" class="btn btn-purple">Confirm Booking</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- AI ASSISTANT DRAWER MODAL -->
+  <div class="modal-overlay" id="aiDrawerModal">
+    <div class="modal-card" style="max-width: 600px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h3 style="font-size: 1.25rem; color: var(--primary-green); font-weight: 800; display: flex; align-items: center; gap: 0.5rem;">
+          🤖 User AI Safety & Care Assistant
+        </h3>
+        <button onclick="closeAiDrawer()" style="background: none; border: none; font-size: 1.2rem; cursor: pointer;">✕</button>
+      </div>
+      <div id="aiChatWindow" style="background: var(--main-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 1rem; height: 260px; overflow-y: auto; margin-bottom: 1rem; font-size: 0.88rem;">
+        <div style="color: var(--text-muted); font-style: italic;">Hello Jordan! How can I assist your family's care and safety today?</div>
+      </div>
+      <form onsubmit="handleAiSubmit(event)" style="display: flex; gap: 0.75rem;">
+        <input type="text" id="aiInput" placeholder="Ask Guardian Go AI..." required style="flex: 1; padding: 0.75rem 1rem; border: 1px solid var(--card-border); border-radius: var(--radius-md); font-size: 0.88rem;">
+        <button type="submit" class="btn btn-purple" id="aiSubmitBtn">Ask AI</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="/parent/app.js?v=2.1.0"></script>
+</body>
+</html>
